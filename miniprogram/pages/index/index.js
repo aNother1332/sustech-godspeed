@@ -7,11 +7,20 @@ Page({
     vehicleCount: null,
   },
 
-  // 每次回到主页都刷新收录数，扫码建了新车后返回时数字也会更新
+  onLoad() {
+    // 启动即读取本地缓存，上次的收录数秒显，避免等待云端
+    const cached = wx.getStorageSync("vehicleCount");
+    if (typeof cached === "number" && cached >= 0) {
+      this.setData({ vehicleCount: cached });
+    }
+  },
+
+  // 每次回到主页都向云端刷新收录数并更新本地缓存
   onShow() {
     callBike("countVehicles").then((r) => {
-      if (r.errCode === 0) {
+      if (r.errCode === 0 && typeof r.count === "number") {
         this.setData({ vehicleCount: r.count });
+        wx.setStorageSync("vehicleCount", r.count);
       }
     });
   },
