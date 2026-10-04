@@ -184,3 +184,47 @@
   color: #8E8E93;
   padding: 12rpx 0;
 }
+
+/* 上次辅助找车时间 */
+.last-find {
+  text-align: center;
+  font-size: 24rpx;
+  color: #6B6B6D;
+  background: #F2F2F7;
+  border-radius: 12rpx;
+  padding: 14rpx 16rpx;
+  margin-bottom: 16rpx;
+}
+
+/* ===== 用车高峰期禁用提示弹窗 ===== */
+.rush-card {
+  height: auto;
+}
+.rush-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #B45309;
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+.rush-text {
+  font-size: 27rpx;
+  color: #48484A;
+  line-height: 1.8;
+  margin-bottom: 20rpx;
+}
+.rush-ok-btn {
+  background: #B45309;
+  color: #FFFFFF;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 20rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rpx;
+}
+.rush-ok-btn::after {
+  border: none;
+}

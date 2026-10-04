@@ -233,6 +233,21 @@ exports.main = async (event) => {
         return { errCode: 0, list };
       }
 
+      // 查询某辆车最近一次被使用辅助找车的时间
+      case "getLastFind": {
+        const vehicleId = String(event.vehicleId || "");
+        if (!VEHICLE_ID_RE.test(vehicleId)) {
+          return { errCode: 1, errMsg: "车号格式不正确" };
+        }
+        const r = await table("find_logs")
+          .select("created_at")
+          .eq("vehicle_id", vehicleId)
+          .order("created_at", { ascending: false })
+          .limit(1);
+        if (r.error) return { errCode: -1, errMsg: "查询失败: " + r.error.message };
+        return { errCode: 0, lastFindAt: r.data && r.data[0] ? r.data[0].created_at : null };
+      }
+
       // 找车行为审计日志：谁在何时对哪辆车按了「去找车」
       case "logFind": {
         const vehicleId = String(event.vehicleId || "");

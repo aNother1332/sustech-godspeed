@@ -1,11 +1,11 @@
 <view class="page">
   <view class="warning-banner">
-    <view class="warning-title">⚠️ 使用找车功能前请先仔细阅读</view>
-    <view class="warning-text">找车功能通过青桔「车号开车」开锁后立即关锁实现，可能存在的问题：</view>
+    <view class="warning-title">⚠️ 使用辅助找车功能前请先仔细阅读</view>
+    <view class="warning-text">辅助找车功能通过青桔「车号开车」开锁后立即关锁实现，可能存在的问题：</view>
     <view class="warning-text">1. 若目标车辆正被人骑行，你的操作会立即结束对方手机上的骑行行程；</view>
     <view class="warning-text">2. 对方的行程结束后，若车辆不在停车区域内，对方会被收取调度费——这等于让别人为你的定位买单，由此产生的纠纷与你相关；</view>
     <view class="warning-text">3. 开锁期间车辆由你的账号负责，可能被路人骑走；频繁开锁关锁可能导致你的账号受限。</view>
-    <view class="warning-text">点击「去找车」后会再次弹出完整风险说明与免责声明。</view>
+    <view class="warning-text">点击「辅助找车」后会再次弹出完整风险说明与免责声明。</view>
   </view>
 
   <view wx:if="{{loading}}" class="tip">加载中…</view>
@@ -24,17 +24,17 @@
         data-vehicle-id="{{item.vehicleId}}"
         bindtap="onFindTap"
       >
-        <text>去找车</text>
+        <text>辅助找车</text>
         <text class="find-chevron"> ›</text>
       </view>
       <view class="badge badge-{{item.statusCls}}">{{item.statusLabel}}</view>
     </view>
   </view>
 
-  <!-- 找车强制阅读弹窗 -->
+  <!-- 辅助找车强制阅读弹窗 -->
   <view wx:if="{{findModalShown}}" class="modal-mask" bindtap="onModalCancel">
     <view class="modal-card" catchtap="noop">
-      <view class="modal-title">⚠️ 找车前必读</view>
+      <view class="modal-title">⚠️ 辅助找车前必读</view>
       <scroll-view
         class="modal-scroll"
         scroll-y
@@ -42,27 +42,42 @@
         lower-threshold="60"
       >
         <view class="modal-body">
-          <view class="m-sec">找车是怎么工作的</view>
-          <view class="m-text">通过青桔「车号开车」输入车号触发开锁，随即关锁（开锁后 1 分钟内关锁免费），再借助青桔行程轨迹确认车辆当前所在位置。车号已为你自动复制，粘贴即可。</view>
+          <view class="m-sec">辅助找车是怎么工作的</view>
+          <view class="m-text">本功能仅提供"车号复制 + 页面跳转"的便捷工具，并不是真正意义上的找车功能——车辆的实际位置需要你在青桔小程序内自行确认。</view>
+          <view class="m-text">工作方式：通过青桔「车号开车」输入车号触发开锁，随即关锁（开锁后 1 分钟内关锁免费），再借助青桔行程轨迹确认车辆当前所在位置。车号已为你自动复制，粘贴即可。</view>
 
           <view class="m-sec">你必须知晓的风险</view>
           <view class="m-text">1. 若这辆车当前正被人骑行，你的开锁操作会立即结束对方手机上的骑行行程；</view>
-          <view class="m-text">2. 对方的行程结束后，若车辆所在位置不在青桔规定的停车区域内，对方将被收取调度费——这是找车功能最大的风险，等于让别人为你的定位买单，由此产生的纠纷与费用归属与你相关；</view>
+          <view class="m-text">2. 对方的行程结束后，若车辆所在位置不在青桔规定的停车区域内，对方将被收取调度费——这是辅助找车功能最大的风险，等于让别人为你的定位买单，由此产生的纠纷与费用归属与你相关；</view>
           <view class="m-text">3. 开锁后到关锁前，车辆处于可被任何人骑走的状态，期间产生的费用计入你的账号；</view>
           <view class="m-text">4. 若超过免费时限未关锁，将产生正常骑行费用；</view>
-          <view class="m-text">5. 频繁的“开锁-关锁”会被判定为异常用车，可能导致你的青桔账号被限流或封禁。</view>
+          <view class="m-text">5. 频繁的"开锁-关锁"会被判定为异常用车，可能导致你的青桔账号被限流或封禁。</view>
+
+          <view class="m-sec">记录与追溯</view>
+          <view class="m-text">你的每一次辅助找车行为都会留下记录：你的账号标识、目标车号与操作时间将被保存至开发者后端，可随时查询与追溯。请对自己的每一次操作负责。</view>
 
           <view class="m-sec">免责声明</view>
-          <view class="m-text">本小程序（你科神车）仅提供车号复制与页面跳转工具，不参与、不代理任何开锁、关锁或骑行行为。因使用找车功能产生的一切费用（包括但不限于调度费、骑行费）、账号风险、与他人的纠纷及对任何第三方造成的损失，均由使用者本人自行承担，与开发者无关。</view>
+          <view class="m-text">本小程序（你科神车）仅提供车号复制与页面跳转工具，不参与、不代理任何开锁、关锁或骑行行为。因使用辅助找车功能产生的一切费用（包括但不限于调度费、骑行费）、账号风险、与他人的纠纷及对任何第三方造成的损失，均由使用者本人自行承担，与开发者无关。</view>
           <view class="m-text">继续操作即表示你已阅读、理解并自愿承担上述全部风险。</view>
         </view>
         <view class="modal-bottom-pad">
+          <view wx:if="{{lastFindText}}" class="last-find">{{lastFindText}}</view>
           <view wx:if="{{!findBtnRevealed}}" class="m-hint">↓ 继续上滑阅读完整免责声明</view>
-          <button wx:if="{{findBtnRevealed}}" class="modal-go-btn" bindtap="onConfirmFind">去找车</button>
-          <view wx:else class="modal-go-btn-disabled">去找车</view>
+          <button wx:if="{{findBtnRevealed}}" class="modal-go-btn" bindtap="onConfirmFind">辅助找车</button>
+          <view wx:else class="modal-go-btn-disabled">辅助找车</view>
         </view>
       </scroll-view>
       <view class="modal-cancel" bindtap="onModalCancel">取消</view>
+    </view>
+  </view>
+
+  <!-- 用车高峰期禁用提示弹窗 -->
+  <view wx:if="{{rushModalShown}}" class="modal-mask" bindtap="onRushModalClose">
+    <view class="modal-card rush-card" catchtap="noop">
+      <view class="rush-title">⏰ 当前处于用车高峰期</view>
+      <view class="rush-text">现在是第 {{rushPeriod}} 节课上课前后（上课前 25 分钟至上课后 5 分钟），为避免影响同学上课用车，辅助找车功能已临时禁用。</view>
+      <view class="rush-text">请在非高峰时段再试。法定节假日与普通周末不受此限制。</view>
+      <button class="rush-ok-btn" bindtap="onRushModalClose">我知道了</button>
     </view>
   </view>
 </view>
