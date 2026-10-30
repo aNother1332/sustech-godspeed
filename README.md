@@ -9,7 +9,7 @@
 
 <div align="center">
 
-<img src="docs/mp-qrcode.jpg" width="200" alt="微信小程序码" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/wechat-qr.jpg" width="200" alt="普通二维码" />
+<img src="docs/mp-qrcode.jpg?v=2" width="200" alt="微信小程序码" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/wechat-qr.jpg?v=2" width="200" alt="普通二维码" />
 
 微信小程序码（左）· 普通二维码（右）—— 微信扫一扫即可使用
 
